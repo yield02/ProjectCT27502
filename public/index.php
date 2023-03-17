@@ -3,7 +3,7 @@
 include '../index.php';
 include './components/header.php';
 
-
+  
 ?>
 
     <div id="content"></div>

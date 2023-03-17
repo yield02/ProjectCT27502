@@ -1,61 +1,30 @@
-<?php
-//kiểm tra tính hợp lý của URL;
-function checkURL(){
-    if(!isset($_GET['url'])) {
-        echo 'home';
-    }
+<!-- <script>
+$(document).ready(function() {
+			// Load the home page on first load
+			$('#content').load('./page/home.php');
 
-    // else if($_SERVER['REQUEST_METHOD'] && $_GET['url']) {
-        
-    // }
-
-    else {
-        switch ($_GET['url']){
-            case 'login':
-                echo 'login';
-                break;
-            case 'manage':
-                echo 'manage';
-                break;
-            default: 
-                echo 'home';
-                break;
-        }
-    }
-
-}
-
-
-
-?>
-
+			// Handle navigation
+			$('nav a').click(function(event) {
+				event.preventDefault();
+				var page = './page/' + $(this).attr('href');
+                console.log(page);
+				$('#content').load(page);
+			});
+		});
+</script> -->
 <script>
-    function loadContent(page) {
-        $.ajax({
-            url: './page/' + page + '.php',
-            success: function(data) {
-                $('#content').html(data);
-                window.history.pushState({
-                    page: page
-                }, null, '/' + page);   
-            }
-        });
-    }
+      $(function() {
+        $('#content').load('./page/home.php');
 
-    $(document).ready(function() {
-        loadContent('<?php checkURL() ?>');
         $('a').click(function(e) {
-            e.preventDefault();
-            var page = $(this).attr('href');
-            loadContent(page);
-        });
-        $(window).on('popstate', function(event) {
-            var state = event.originalEvent.state;
-            if (state) {
-                loadContent(state.page);
-            } else {
-                loadContent('home');
+          e.preventDefault();
+          var url = './page/' + $(this).attr('href');
+          $.ajax({
+            url: url,
+            success: function(data) {
+              $('#content').html(data);
             }
+          });
         });
-    });
+      });
 </script>

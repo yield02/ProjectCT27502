@@ -50,7 +50,7 @@
             $books = [];
     
             $statement = $this->db->prepare('SELECT * FROM books');
-    
+            
             
             $statement->execute();
 
@@ -62,26 +62,34 @@
             return $books;
         }
 
+        public function searchTitle($title) {
+            $books = [];
 
-        public function searchKeyword(){
+            $statement = $this->db->prepare('SELECT * FROM books WHERE Title LIKE :Title');
 
-            $Keyword = $_GET['search'] ?? null;
+            $queryTitle = '%' . $title . '%';
+            
+            $statement->execute(['Title' => $queryTitle]);
 
-            if ($Keyword) {
-              try {
-                $statement = $this->db->prepare('SELECT Title, Author FROM books WHERE Title LIKE :keyword');
-                $statement->bindValue(':keyword', '%' . $Keyword . '%');
-                $statement->execute();
-              } catch (PDOException $e) {
-                $pdo_error = $e->getMessage();
-              }
-            } else {
-              $error_message = 'Hãy nhập từ khóa!';
-                include '../components/show_error.php';
+            while($row = $statement->fetch()) {
+                $result = [
+                    'BookID' => $row['BookID'],
+                    'Title' => $row['Title'],
+                    'Author' => $row['Author'],
+                    'Publisher' => $row['Publisher'],
+                    'PublishDate' => $row['PublishDate'],
+                    'ISBN' => $row['ISBN'],
+                    'Quantity' => $row['Quantity'],
+                    'CategoryID' =>$row['CategoryID'],
+                    // 'Image' => $this->image sẽ bổ sung sau.
+                ];
+
+                $books[] = $result;
             }
+            return $books;
         }
+  
     }
 
-      
-  
+        
 ?>

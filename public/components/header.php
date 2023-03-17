@@ -35,11 +35,11 @@ if (session_status() === PHP_SESSION_NONE) {
 
     <header>Header</header>
     <nav>
-        <ul>
-            <li><a href="home">Home</a></li>
-            <li><a href="login">login</a></li>
-            <li><a href="manage">Manage admin </a></li>
-        </ul>
-    </nav>
+		<ul>
+			<li><a href="home.php">Home</a></li>
+			<li><a href="login.php">About</a></li>
+			<li><a href="manage.php">Contact</a></li>
+		</ul>
+	</nav>
     <!-- BEGIN CHANGEABLE CONTENT. -->   
 

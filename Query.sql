@@ -84,3 +84,6 @@ VALUES
 (2, 1, '2023-03-05', '2023-03-19', NULL, NULL);
 
 SELECT * FROM books;
+
+
+SELECT * FROM books WHERE Title = 'Đường%'
