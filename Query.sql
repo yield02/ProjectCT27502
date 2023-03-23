@@ -85,5 +85,6 @@ VALUES
 
 SELECT * FROM books;
 
+ALTER TABLE users ADD isAdmin BOOLEAN;
 
-SELECT * FROM books WHERE Title = 'Đường%'
+booksbooks

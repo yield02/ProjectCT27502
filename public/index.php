@@ -1,12 +1,23 @@
 <?php 
+define('ROOT_DIR', realpath(dirname(__DIR__)));
 
-include '../index.php';
-include './components/header.php';
+include __DIR__. '/../bootstrap.php';
+require __DIR__ .'/../vendor/autoload.php';
 
-  
+
+
+$router = new \Bramus\Router\Router();
+
+
+
+
+require __DIR__ .'/../routers/bookRouters.php';
+require __DIR__ .'/../routers/mainRouters.php';
+require __DIR__ .'/../routers/userRouters.php';
+
+
+
 ?>
-
-    <div id="content"></div>
 <?php
-    include './components/footer.php';
+    $router->run();
 ?>

@@ -3,13 +3,15 @@
 if (session_status() === PHP_SESSION_NONE) {
 	session_start();
 }
+include __DIR__ . '/../../bootstrap.php';
 ?>
+
+
 <!doctype html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" media="all" href="css/style.css">
     <title>
         <?php
 	if (defined('TITLE')) {
@@ -26,20 +28,17 @@ if (session_status() === PHP_SESSION_NONE) {
     </script>
     <link rel="stylesheet" href="./assets/css/main.css">
     <script src="./assets/js/jquery-3.6.3.min.js"></script>
-    
-    <?php 
-        include __DIR__. '/ajax.php';
-    ?>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
 
-    <header>Header</header>
-    <nav>
+    <header><nav>
 		<ul>
-			<li><a href="home.php">Home</a></li>
-			<li><a href="login.php">About</a></li>
-			<li><a href="manage.php">Contact</a></li>
+			<li><a href="/">Home</a></li>
+			<li><a href="login">LOGIN</a></li>
+			<li><a href="manage">manage</a></li>
 		</ul>
-	</nav>
+	</nav></header>
+    
     <!-- BEGIN CHANGEABLE CONTENT. -->   
 

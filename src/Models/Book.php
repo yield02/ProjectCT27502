@@ -1,5 +1,5 @@
 <?php 
-    namespace App;
+    namespace App\Models;
 
     class Book {
         private $db;
@@ -13,6 +13,7 @@
         private $quantity;
         private $categoryID;
         private $image;
+        private $description;
 
         public function __construct($pdo) {
             $this->db= $pdo;
@@ -40,6 +41,7 @@
                 'ISBN' => $this->ISBN,
                 'Quantity' => $this->quantity,
                 'CategoryID' =>$this->categoryID,
+                'description'=>$this->description
                 // 'Image' => $this->image sẽ bổ sung sau.
             ] = $row;
             return $this;
@@ -48,7 +50,7 @@
 
         public function getAll() {
             $books = [];
-    
+
             $statement = $this->db->prepare('SELECT * FROM books');
             
             
@@ -82,13 +84,27 @@
                     'Quantity' => $row['Quantity'],
                     'CategoryID' =>$row['CategoryID'],
                     // 'Image' => $this->image sẽ bổ sung sau.
+                    'description' => $row['description']
                 ];
-
                 $books[] = $result;
             }
             return $books;
         }
   
+        public function getNewestBook() {
+            $books = [];
+    
+            $statement = $this->db->prepare('SELECT * FROM books ORDER BY PublishDate DESC LIMIT 1;');
+    
+            $statement->execute();
+            while ($row = $statement->fetch()) {
+                $book = new Book('');
+                $book->fillData($row);
+                $books[] = $book;
+            }
+            return $books;
+        }
+        
     }
 
         

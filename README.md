@@ -2,15 +2,15 @@
 
 Học kỳ 2, Năm học 2022-2023
 
-**MSSV 1** : 
+**MSSV 1** : B2014682
 
-**Họ tên SV 1**:
+**Họ tên SV 1**: Nguyễn Thanh Nhường
 
-**MSSV 2**:
+**MSSV 2**: Lê Đặng Uy Phong
 
 **Họ tên SV 2**:
 
 **Lớp học phần**:
 
-**Tên dự án**:
+**Tên dự án**: Webside Quản lý thư viện và tạo phiếu mượn sách
 
