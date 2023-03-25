@@ -12,12 +12,24 @@ class PageController
 
 	public function login()
 	{
+
+	
+
+	$builder = new \Gregwar\Captcha\CaptchaBuilder();
+	$builder->build();
+
+		$_SESSION['phrase'] = $builder->getPhrase();
+		echo $_SESSION['phrase'];
 		require __DIR__ . '/page/login.php';
 	}
 
 	public function logout()
-	{
+	{	
+		if($_SESSION['user'])
+		unset($_SESSION['user']);
 		echo "Bạn đã đăng xuất";
+		header('location: /');
+		exit();
 	}
 
 	public function checkLogin()
@@ -27,27 +39,29 @@ class PageController
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			if (
 				!(isset($_SESSION['phrase']) &&
-					Gregwar\Captcha\PhraseBuilder::comparePhrases(
+					\Gregwar\Captcha\PhraseBuilder::comparePhrases(
 						$_SESSION['phrase'],
 						$_POST['captcha']
 					)
 				)
 			) {
+				echo $_SESSION['phrase'];
 				$error_message = 'Nhập sai mã captcha!';
 
 			} else if (
 				!empty($_POST['username']) &&
 				!empty($_POST['password']) &&
 				isset($_SESSION['phrase']) &&
-				Gregwar\Captcha\PhraseBuilder::comparePhrases(
+				\Gregwar\Captcha\PhraseBuilder::comparePhrases(
 					$_SESSION['phrase'],
 					$_POST['captcha']
 				)
 			) {
 				if ($user->checkUser(strtolower($_POST['username']), $_POST['password'])) {
-					$_SESSION['user'] = 'me';
+					$_SESSION['user'] = strtolower($_POST['username']);
 					$loggedin = true;
-					echo "ok rồi nè";
+					header('location: /');
+        			exit();
 				} else {
 					$error_message = 'Địa chỉ email và mật khẩu không khớp!';
 				}

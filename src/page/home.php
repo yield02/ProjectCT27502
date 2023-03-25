@@ -3,7 +3,7 @@
 include __DIR__.'/../../bootstrap.php';
 
 use App\Models\Book;
-use App\Models\User;
+
 
 
 
@@ -16,16 +16,9 @@ $page = 'home';
 require_once __DIR__ . '/../components/header.php';
 require_once __DIR__ . '/../components/addCss.php';
 
-
 ?>
 
 <div id="content">
-
-    <!-- Form tìm kiếm -->
-    <form action="" method="get" id="search-form">
-        <input type="text" name="search" placeholder="Nhập từ khóa">
-        <button type="submit">Tìm kiếm</button>
-    </form>
 
     <!-- search result -->
 
@@ -81,7 +74,7 @@ $(document).ready(function() {
         event.preventDefault();
         var searchQuery = $('input[name="search"]').val();
         $.ajax({
-            url: '/searchTitle/' + searchQuery,
+            url: '/book/searchTitle/' + searchQuery,
             type: 'GET',
             dataType: 'json',
             success: (data) => {

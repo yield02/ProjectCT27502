@@ -3,3 +3,47 @@
     margin: 0;
     box-sizing: border-box;
 }
+
+a{
+    text-decoration: none;
+}
+
+a:hover {
+    color: #f30b0b!important;
+}
+
+li{
+    list-style: none;
+}
+
+.pb-2d75, .py-2d75 {
+    padding-bottom: .75rem!important;
+}
+
+.pt-2d75, .py-2d75 {
+    padding-top: .75rem!important;
+}
+
+.pt-5, .py-5 {
+    padding-top: 2rem!important;
+}
+
+.pb-5, .py-5 {
+    padding-bottom: 2rem!important;
+}
+
+.mt-5, .my-5 {
+    margin-top: 2rem!important;
+}
+
+.mb-5, .my-5 {
+    margin-top: 2rem!important;
+}
+
+.transition-3d-hover {
+    transition: all .2s ease-in-out;
+}
+
+.widgets-hover:hover {
+    padding-left: 12px;
+}

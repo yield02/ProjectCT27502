@@ -1,13 +1,6 @@
 <?php 
 
 
-use Gregwar\Captcha\CaptchaBuilder;
-use Gregwar\Captcha\PhraseBuilder;
-
-$builder = new CaptchaBuilder();
-$builder->build();
-
-$_SESSION['phrase'] = $builder->getPhrase();
 
 $page = 'login';
 
