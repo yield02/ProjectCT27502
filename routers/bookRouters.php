@@ -10,5 +10,12 @@ $router->get('book/searchTitle/{title}', function($title) {
 });
 
 
+$router->get('book/{id}', function($id) {
+    global $PDO;
+    $book = new App\Models\Book($PDO);
+    echo json_encode($book->findBook($id), JSON_UNESCAPED_UNICODE);
+});
+
+
 
 ?>

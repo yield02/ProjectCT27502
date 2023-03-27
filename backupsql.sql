@@ -16,8 +16,8 @@
 
 
 -- Dumping database structure for libraryproject
-CREATE DATABASE IF NOT EXISTS `libraryproject1` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
-USE `libraryproject1`;
+CREATE DATABASE IF NOT EXISTS `libraryproject` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+USE `libraryproject`;
 
 -- Dumping structure for table libraryproject.books
 CREATE TABLE IF NOT EXISTS `books` (
@@ -87,12 +87,12 @@ INSERT INTO `books` (`BookID`, `Title`, `Author`, `Publisher`, `PublishDate`, `I
 	(47, 'Mắt biếc', 'Nguyễn Nhật Ánh', 'Nhã Nam', '2018-10-05', '9786049652893', 12, 1, 'Tác phẩm của nhà văn Nguyễn Nhật Ánh', 'https://cdn.tgdd.vn/Products/Images/42/213032/iphone/xiaomi-redmi-note-8-pro-6gb-green-600x600.jpg'),
 	(48, 'Tôi thấy hoa vàng trên cỏ xanh', 'Nguyễn Nhật Ánh', 'Nhã Nam', '2018-09-05', '9786049651698', 15, 1, 'Tác phẩm của nhà văn Nguyễn Nhật Ánh', 'https://salt.tikicdn.com/ts/product/1f/b0/eb/9242a95a3650b80e9b466f3d28ec61ee.jpg'),
 	(49, 'Đường xưa mây trắng', 'Thích Nhất Hạnh', 'NXB Phương Đông', '2012-08-17', '9786045634600', 5, 2, 'Tác phẩm về tâm linh của Thích Nhất Hạnh', 'https://salt.tikicdn.com/ts/bookpreview/9b/1e/46/68f6848b361364abf09a75323e88db5e.jpg'),
-	(50, 'Sapiens: Lược sử loài người', 'Yuval Noah Harari', 'NXB Văn hóa - Văn nghệ TP. Hồ Chí Minh', '2021-01-01', '9786045700664', 3, 3, 'Tác phẩm về lịch sử nhân loại của Yuval Noah Harari', 'https://images-na.ssl-images-amazon.com/images/I/41Y9KLL7bZL._SX329_BO1,204,203,200_.jpg');
+	(50, 'Sapiens: Lược sử loài người', 'Yuval Noah Harari', 'NXB Văn hóa - Văn nghệ TP. Hồ Chí Minh', '2021-01-01', '9786045700664', 3, 3, 'Tác phẩm về lịch sử nhân loại của Yuval Noah Harari', 'https://images-na.ssl-images-amazon.com/images/I/41Y9KLL7bZL._SX329_BO1,204,203,200_.jpg'),
 	(51, 'Làm giàu không khó', 'Phạm Thành Long', 'Nhà xuất bản Tổng hợp TPHCM', '2020-02-25', '9786042028226', 20, 1, 'Cuốn sách nói về cách làm giàu một cách thông minh và hiệu quả', 'http://example.com/lam-giau-khong-kho.jpg'),
 	(52, 'Hạnh phúc bên nhau', 'Nguyễn Thị Hồng Loan', 'Nhà xuất bản Giáo dục Việt Nam', '2019-10-10', '9786047877779', 15, 2, 'Sách chia sẻ về những bí quyết giúp mối quan hệ tình cảm luôn hạnh phúc', 'http://example.com/hanh-phuc-ben-nhau.jpg'),
 	(53, 'Hồi ký Tổng thống Barack Obama', 'Barack Obama', 'Nhà xuất bản Kim Đồng', '2018-01-01', '9786042015776', 30, 3, 'Cuốn sách nói về hành trình của Tổng thống Barack Obama và những chia sẻ về cuộc sống và chính trị', 'http://example.com/hoi-ky-tong-thong-barack-obama.jpg'),
 	(54, 'Tìm lại chính mình', 'Lê Thẩm Dương', 'Nhà xuất bản Đông A', '2017-05-15', '9786047738025', 10, 4, 'Cuốn sách giúp bạn tìm lại chính mình và khám phá bản thân mình', 'http://example.com/tim-lai-chinh-minh.jpg'),
-	(55, 'Sống vì mình', 'Phạm Thị Hương', 'Nhà xuất bản Tri Thức', '2021-02-14', '9786042039819', 25, 1, 'Sách nói về tư duy sống tích cực và làm chủ cuộc đời', 'http://example.com/song-vi-minh.jpg')
+	(55, 'Sống vì mình', 'Phạm Thị Hương', 'Nhà xuất bản Tri Thức', '2021-02-14', '9786042039819', 25, 1, 'Sách nói về tư duy sống tích cực và làm chủ cuộc đời', 'http://example.com/song-vi-minh.jpg'),
 	(56, 'Bán cho tôi một phút hạnh phúc', 'Phan Việt', 'NXB Tổng hợp TP. Hồ Chí Minh', '2020-07-01', '8935220228068', 10, 1, 'Tập truyện ngắn của tác giả Phan Việt', 'https://images-na.ssl-images-amazon.com/images/I/51ldYYZdJ0L._SX320_BO1,204,203,200_.jpg'),
 	(57, 'Đi tìm lẻ bóng', 'Nguyễn Thành Long', 'NXB Thế giới', '2018-03-10', '8936066680497', 5, 2, 'Tập truyện ngắn của tác giả Nguyễn Thành Long', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQr91sd_iI8rOJk-2YwQDdEdMUEfIzXbdJG-A&usqp=CAU'),
 	(58, 'Tôi tài giỏi, bạn cũng thế', 'Adam Khoo', 'NXB Thanh Niên', '2021-01-01', '8936086919148', 15, 3, 'Sách hướng dẫn phát triển kỹ năng và tư duy', 'https://salt.tikicdn.com/cache/w1200/ts/product/71/02/df/b1d2c44f17e0c0f6d7c05b491cf294b7.jpg'),
@@ -107,7 +107,7 @@ INSERT INTO `books` (`BookID`, `Title`, `Author`, `Publisher`, `PublishDate`, `I
    (67, 'Tội ác và án oan', 'Agatha Christie', 'NXB Phụ Nữ', '2021-02-15', '978-604-93-7107-3', 8, 6, 'Trinh thám', 'https://i.imgur.com/s89iLkN.jpg'),
    (68, 'Nữ vương không ngai', 'Philip Freeman', 'NXB Lao Động', '2019-11-01', '978-604-580-924-3', 4, 7, 'Lịch sử', 'https://i.imgur.com/vbPPRL4.jpg'),
    (69, 'Bốc lửa', 'Cecelia Ahern', 'NXB Phụ Nữ', '2020-05-01', '978-604-93-6806-5', 2, 8, 'Tiểu thuyết', 'https://i.imgur.com/dClLhJw.jpg'),
-   (70, 'Mật mã thần thánh', 'Dan Brown', 'NXB Trẻ', '2017-12-01', '978-604-573-366-9', 9, 9, 'Phiêu lưu', 'https://i.imgur.com/LkZjTfe.jpg'),
+   (70, 'Mật mã thần thánh', 'Dan Brown', 'NXB Trẻ', '2017-12-01', '978-604-573-366-9', 9, 9, 'Phiêu lưu', 'https://i.imgur.com/LkZjTfe.jpg');
 -- Dumping structure for table libraryproject.borrowings
 CREATE TABLE IF NOT EXISTS `borrowings` (
   `BorrowID` int(11) NOT NULL AUTO_INCREMENT,
@@ -181,3 +181,6 @@ INSERT INTO `users` (`UserID`, `Username`, `Password`, `Email`, `Fullname`, `Add
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;
 SELECT * FROM categories INTO OUTFILE './data.txt' CHARACTER SET utf8 FIELDS TERMINATED BY ',' ;
+
+ALTER TABLE categories ADD Img VARCHAR(255);
+ALTER TABLE categories ADD Color__img VARCHAR(255);

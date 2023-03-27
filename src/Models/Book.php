@@ -31,6 +31,18 @@
             return $this->author;
         }
 
+        // public function getImage() {
+        //     return $this->image;
+        // }
+
+        public function getPublisher() {
+            return $this->publisher;
+        }
+        
+        public function getQuantity() {
+            return $this->quantity;
+        }
+
         protected function fillData(array $row) {
             [
                 'BookID' => $this->bookid,
@@ -41,8 +53,8 @@
                 'ISBN' => $this->ISBN,
                 'Quantity' => $this->quantity,
                 'CategoryID' =>$this->categoryID,
+                // 'image' => $this->image,
                 'description'=>$this->description
-                // 'Image' => $this->image sẽ bổ sung sau.
             ] = $row;
             return $this;
         }
@@ -91,11 +103,52 @@
             return $books;
         }
   
+
+
+        public function findBook($BookID) {
+            $books = [];
+
+            $statement = $this->db->prepare('SELECT * FROM books WHERE BookID = :BookID');
+
+            $statement->execute(['BookID' => $BookID]);
+
+            $row = $statement->fetch();
+
+            $result = [
+                'BookID' => $row['BookID'],
+                'Title' => $row['Title'],
+                'Author' => $row['Author'],
+                'Publisher' => $row['Publisher'],
+                'PublishDate' => $row['PublishDate'],
+                'ISBN' => $row['ISBN'],
+                'Quantity' => $row['Quantity'],
+                'CategoryID' =>$row['CategoryID'],
+                'image' => $row['image'],
+                'description' => $row['description']
+            ];
+            return $result;
+        }
+
+
+        public function getNewestBooks() {
+            $books = [];
+        
+            $statement = $this->db->prepare('SELECT * FROM books ORDER BY PublishDate DESC LIMIT 6;');
+        
+            $statement->execute();
+            while ($row = $statement->fetch()) {
+                $book = new Book('');
+                $book->fillData($row);
+                $books[] = $book;
+            }
+            return $books;
+        }
+
         public function getNewestBook() {
             $books = [];
-    
+        
             $statement = $this->db->prepare('SELECT * FROM books ORDER BY PublishDate DESC LIMIT 1;');
-    
+        
             $statement->execute();
             while ($row = $statement->fetch()) {
                 $book = new Book('');

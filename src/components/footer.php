@@ -24,27 +24,27 @@
                         <ul class="list-unstyled mb-0 d-flex">
                             <li class="btn ps-0">
                                 <a class="text-dark" href="#">
-                                    <i class="fa-brands fa-instagram"></i>
+                                    <i class="link-hover fa-brands fa-instagram"></i>
                                 </a>
                             </li>
                             <li class="btn">
                                 <a class="text-dark" href="#">
-                                    <i class="fa-brands fa-facebook-f"></i>
+                                    <i class="link-hover fa-brands fa-facebook-f"></i>
                                 </a>
                             </li>
                             <li class="btn">
                                 <a class="text-dark" href="#">
-                                <i class="fa-brands fa-youtube"></i>
+                                <i class="link-hover fa-brands fa-youtube"></i>
                                 </a>
                             </li>
                             <li class="btn">
                                 <a class="text-dark" href="#">
-                                    <i class="fa-brands fa-twitter"></i>
+                                    <i class="link-hover fa-brands fa-twitter"></i>
                                 </a>
                             </li>
                             <li class="btn">
                                 <a class="text-dark" href="#">
-                                <i class="fa-brands fa-pinterest"></i>
+                                <i class="link-hover fa-brands fa-pinterest"></i>
                                 </a>
                             </li>
                         </ul>

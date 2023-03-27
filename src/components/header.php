@@ -71,12 +71,18 @@ include __DIR__ . '/../../bootstrap.php';
                                             </li>'; 
                                 else 
                                 echo    '<li class="nav-item text-center" style="width: 130px;">
-                                            <a class="nav-link text-dark mx-4 px-0 py-5 fw-medium border-bottom border-danger border-2" aria-current="page" href="login">Đặng nhập</a>
+                                            <a class="nav-link text-dark mx-4 px-0 py-5 fw-medium border-bottom border-danger border-2" aria-current="page" href="login">Đăng nhập</a>
                                         </li>'?>
-                            <li class="nav-item text-center" style="width: 130px;">
-                                <a class="nav-link text-dark mx-4 px-0 py-5 fw-medium border-bottom border-danger border-2"
-                                    aria-current="page" href="manage">Quản lí</a>
-                            </li>
+
+                            <?php 
+
+                                if(isset($_SESSION['user']) && isset($_SESSION['admin']))
+                                    echo '<li class="nav-item text-center" style="width: 130px;">
+                                    <a class="nav-link text-dark mx-4 px-0 py-5 fw-medium border-bottom border-danger border-2"
+                                        aria-current="page" href="manage">Quản lí</a>
+                                </li>';
+                            ?>
+                            
                         </ul>
                     </div>
                     <div class="nav-search">
@@ -86,7 +92,7 @@ include __DIR__ . '/../../bootstrap.php';
                                     <i
                                         class="fa-solid fa-magnifying-glass input-group-text pb-2d75 bg-light border-light pt-3"></i>
                                 </div>
-                                <input class="form-control bg-light  py-2d75 border-light" type="search" name="search"
+                                <input  id="search" class="form-control bg-light  py-2d75 border-light" type="search" name="search"
                                     placeholder="Nhập từ khóa" aria-label="Search">
                             </div>
                         </form>

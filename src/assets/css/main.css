@@ -8,7 +8,17 @@ a{
     text-decoration: none;
 }
 
-a:hover {
+.nav a:hover {
+    color: #f30b0b!important;
+    background-color: transparent;
+}
+
+footer a:hover {
+    color: #f30b0b!important;
+    background-color: transparent;
+}
+
+.link-hover:hover {
     color: #f30b0b!important;
 }
 
@@ -25,19 +35,19 @@ li{
 }
 
 .pt-5, .py-5 {
-    padding-top: 2rem!important;
+    padding-top: 2.5rem!important;
 }
 
 .pb-5, .py-5 {
-    padding-bottom: 2rem!important;
+    padding-bottom: 2.5rem!important;
 }
 
 .mt-5, .my-5 {
-    margin-top: 2rem!important;
+    margin-top: 2.5rem!important;
 }
 
 .mb-5, .my-5 {
-    margin-top: 2rem!important;
+    margin-bottom: 2.5rem!important;
 }
 
 .transition-3d-hover {

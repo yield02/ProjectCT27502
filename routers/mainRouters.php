@@ -4,13 +4,6 @@
 $router->get('/','App\PageController@index');
 
 
-$router->get('/login', 'App\PageController@login');
-
-
-$router->post('/login', 'App\PageController@checkLogin');
-
-$router->get('/logout', 'App\PageController@logout');
-
 $router->get('/manage', function() {
     require __DIR__.'/../src/page/manage.php';
    
