@@ -1,11 +1,17 @@
 /* Fonts Form Google Font ::- https://fonts.google.com/  -:: */
 /* End Fonts */
 /* Start Global rules */
-* {
+*{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    caret-color: transparent;
 }
+
+input{
+    caret-color: black;
+}
+
 /* End Global rules */
 
 /* Start body rules */
@@ -133,27 +139,40 @@ input:focus {
 
 /* input[type="text"] {min-width: 250px;} */
 /* buttons  */
-button {
+.btn {
     display: inline-block;
-    color: #252537;
-  
-    width: 280px;
-    height: 50px;
-  
-    padding: 0 20px;
-    background: #fff;
-    border-radius: 5px;
-    
-    outline: none;
     border: none;
-  
-    cursor: pointer;
+    background-color: transparent;
+    color: black;
     text-align: center;
-    transition: all 0.2s linear;
-    
-    margin: 7% auto;
-    letter-spacing: 0.05em;
-}
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn:hover {
+    background-color: #555;
+    color: white;
+  }
+  
+  .btn a {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    color: inherit;
+    text-decoration: none;
+  }
+  
+  .btn i {
+    margin-left: 5px;
+  }
+
+  .log-in{
+    width: 100%;
+  }
+
 /* Submits */
 .submits {
     font-size: 0.75rem;
@@ -163,22 +182,15 @@ button {
     margin-left: 2%;
 }
 
-/*       Forgot Password button FAF3DD  */
-.frgt-pass {background: transparent;}
-
-/*     Sign Up button  */
-.sign-up {background: transparent;}
-
-
 /* buttons hover */
-button:hover {
+.btn:hover {
     transform: translatey(3px);
     opacity: .6;
     box-shadow: none;
 }
 
 /* buttons hover Animation */
-button:hover {
+.btn:hover {
     animation: ani9 0.4s ease-in-out infinite alternate;
 }
 @keyframes ani9 {

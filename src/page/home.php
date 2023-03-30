@@ -133,7 +133,7 @@ require_once __DIR__ . '/../components/addCss.php';
                                 echo '"><ul class="row list-unstyled my-0">';
                             }
                         ?>
-                    <li class="category col-3 mb-0">
+                    <li class="category col-3 mb-0" onclick="renderCategory(<?php echo $category->getCategoryID()?>, '<?php echo $category->getCategoryName()?>');">
                         <div class="category__inner bg-<?php echo $category->getColor__img(); ?> px-5 py-5">
                             <div class="category__icon fs-1 mb-3 mt-2">
                                 <i
@@ -178,29 +178,36 @@ require_once __DIR__ . '/../components/addCss.php';
                     <div class="bg-chili px-5 d-flex align-items-center justify-content-center img-fluid"
                         style="height: 100%!important; width: 100%;">
                         <?php foreach ($newestBook as $book): ?>
-                        <div class="banner__body">
+                        <div class="banner__body text-center">
                             <div class="banner__image pb-1 mb-5">
-                                <!-- <img class="< ?php echo $book->getImage(); ?>" alt="newestbook"> -->
+                                <img src="/assets/img/<?php echo $book->getID(); ?>.png" alt="newestbook"
+                                    class="img-fluid d-block mx-auto" style="max-width: 280px; max-height: 280px;">
                             </div>
                             <h3 class="banner_text m-0">
-                                <span class="d-block mb-1 fw-normal" style="font-size: 2rem;">Nổi bật trong tuần</span>
-                                <span class="d-block mb-3 text-danger fw-medium" style="font-size: 3rem;">Nhanh tay mượn sớm!</span>
+                                <span class="d-block mb-2 fw-normal" style="font-size: 1.5rem;">Mới nhất trong
+                                    tuần</span>
+                                <span class="d-block mb-4 text-danger fw-bold" style="font-size: 3rem;">Mượn
+                                    ngay!</span>
                                 <span
-                                    class="d-block mb-5 text-uppercase fs-2 fw-normal text-body-tertiary opacity-75">Chỉ còn <?php echo $book->getQuantity(); ?> cuốn.</span>
+                                    class="d-block mb-5 text-uppercase fs-5 fw-normal text-body-tertiary opacity-75">Chỉ
+                                    còn <?php echo $book->getQuantity(); ?> cuốn</span>
                             </h3>
-                            <a href="#" class="btn btn-danger btn-lg rounded-0 px-5">View More</a>
+                            <a href="#" class="btn btn-danger btn-lg rounded-0 px-5">Xem thêm</a>
                         </div>
                         <?php endforeach; ?>
                     </div>
                 </div>
 
                 <div class="col-8 row">
-                <?php foreach ($newestBooks as $book): ?>
+                    <?php foreach ($newestBooks as $book): ?>
                     <div class="col-4 p-4 border border-secondary-subtle">
-                        <!-- <img src="< ?php echo $book->getImage(); ?>" alt="newbook" class="img-fluid d-block mx-auto"> -->
+                        <a href="#" class="d-block"><img src="/assets/img/<?php echo $book->getID(); ?>.png"
+                                alt="newbook" class="img-fluid d-block mx-auto"
+                                style="max-width: 150px; max-height: 150px;"></a>
                         <div class="pt-2 bg-white">
                             <div class="text-uppercase fw-semibold mb-1 text-truncate ">
-                                <a class="link-danger link-hover" href="#" style="font-size: .75rem;"><?php echo $book->getPublisher(); ?></a>
+                                <a class="link-danger link-hover" href="#"
+                                    style="font-size: .75rem;"><?php echo $book->getPublisher(); ?></a>
                             </div>
                             <h5 class="h6 lh-base text-dark crop-text" style="height: 3rem;">
                                 <a class="link-dark" href="#"><?php echo $book->getTitle(); ?></a>
@@ -208,7 +215,7 @@ require_once __DIR__ . '/../components/addCss.php';
                             <div class="mb-2 text-truncate">
                                 <a href="#" class="link-secondary link-hover"><?php echo $book->getAuthor(); ?></a>
                             </div>
-                            <div class="d-flex align-items-center fw-medium fs-5">
+                            <div class="d-flex justify-content-center fw-medium fs-5">
                                 <a href="#" class="btn btn-light rounded-3 px-4">Thêm vào giỏ mượn</a>
                             </div>
                         </div>
@@ -221,91 +228,18 @@ require_once __DIR__ . '/../components/addCss.php';
     </div>
 </div>
 
-<div id="result">
+<div id="result" style="display: none;">
 
     <!-- search result -->
 
-
-    <div id="search-result"></div>
-
-    <!-- Hiển thị sách mới nhất
-    <table>
-        <thead>
-            <tr>
-                <img src="" alt="Book Cover">
-                <th>Title</th>
-                <th>Author</th>
-            </tr>
-        </thead>
-        <tbody>
-            < ?php foreach ($newestBooks as $book): ?>
-            <tr>
-                <td>< ?php echo $book->getImage(); ?></td>
-                <td>< ?php echo $book->getTitle(); ?></td>
-                <td>< ?php echo $book->getAuthor(); ?></td>
-            </tr>
-            < ?php endforeach; ?>
-        </tbody>
-    </table> -->
-
-    <!-- Hiển thị kết quả
-    <table>
-        <thead>
-            <tr>
-                <img src="" alt="Book Cover">
-                <th>Title</th>
-                <th>Author</th>
-            </tr>
-        </thead>
-        <tbody>
-            < ?php foreach ($books as $book): ?>
-            <tr>
-                <td>< ?php echo $book->getImage(); ?></td>
-                <td>< ?php echo $book->getTitle(); ?></td>
-                <td>< ?php echo $book->getAuthor(); ?></td>
-            </tr>
-            < ?php endforeach; ?>
-        </tbody>
-    </table> -->
-
-
+    <div class="container my-5">
+        <div id="search-result" class="row mx-4"></div>
+        <div id="pagination" class="my-4 d-flex justify-content-center">
+        </div>
+    </div>
 </div>
 
-<script>
-$(document).ready(function() {
-
-    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
-    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
-
-    $('#search-form').submit(function(event) {
-        event.preventDefault();
-        var searchQuery = $('input[name="search"]').val();
-        $.ajax({
-            url: '/book/searchTitle/' + searchQuery,
-            type: 'GET',
-            dataType: 'json',
-            success: (data) => {
-                if (data.length > 0) {
-                    var html = "<h1>Kết quả tìm kiếm</h1>"
-                    html += data.map(function(item, index) {
-                        console.log(item);
-                        return `
-                            <div>
-                                <p>Title: ${item.Title}</p>
-                                <p>Author: ${item.Author}</p>
-                                <p>Publisher: ${item.Publisher}</p>
-                            </div>
-                        `;
-                    })
-                } else {
-                    var html = "<h1>Không tìm thấy</h1>"
-                }
-                $('#search-result').html(html);
-            }
-        })
-    })
-});
-</script>
+<script src="/assets/js/home.js"></script>
 
 <?php
 require_once __DIR__ . '/../components/footer.php';

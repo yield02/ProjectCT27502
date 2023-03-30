@@ -14,6 +14,10 @@
             $this->db= $pdo;
         }
 
+        public function getCategoryID(){
+            return $this->categoryid;
+        }
+
         public function getCategoryName(){
             return $this->categoryname;
         }
@@ -51,6 +55,18 @@
                 $categories[] = $category;
             }
             return $categories;
+        }
+
+
+        public function getCategoryNameFromID($id) {
+
+            $statement = $this->db->prepare('SELECT CategoryName FROM categories WHERE CategoryID = :categoryID');
+        
+            $statement->execute(['categoryID' => $id]);
+
+            $row = $statement->fetch();
+
+            return $row['CategoryName'];
         }
     }
 ?>

@@ -12,8 +12,7 @@
         private $ISBN;
         private $quantity;
         private $categoryID;
-        private $image;
-        private $description;
+        private $Description;
 
         public function __construct($pdo) {
             $this->db= $pdo;
@@ -31,16 +30,33 @@
             return $this->author;
         }
 
-        // public function getImage() {
-        //     return $this->image;
-        // }
-
         public function getPublisher() {
             return $this->publisher;
+        }
+
+        public function getPublishDate() {
+            return $this->publishDate;
+        }
+
+        public function getISBN() {
+            return $this->ISBN;
         }
         
         public function getQuantity() {
             return $this->quantity;
+        }
+
+        public function getCategoryID() {
+            return $this->categoryID;
+        }
+
+
+
+            
+        
+
+        public function getDescription() {
+            return $this->Description;
         }
 
         protected function fillData(array $row) {
@@ -53,8 +69,7 @@
                 'ISBN' => $this->ISBN,
                 'Quantity' => $this->quantity,
                 'CategoryID' =>$this->categoryID,
-                // 'image' => $this->image,
-                'description'=>$this->description
+                'Description'=>$this->Description
             ] = $row;
             return $this;
         }
@@ -63,7 +78,7 @@
         public function getAll() {
             $books = [];
 
-            $statement = $this->db->prepare('SELECT * FROM books');
+            $statement = $this->db->prepare('SELECT * FROM books ORDER BY PublishDate DESC LIMIT 100');
             
             
             $statement->execute();
@@ -95,8 +110,32 @@
                     'ISBN' => $row['ISBN'],
                     'Quantity' => $row['Quantity'],
                     'CategoryID' =>$row['CategoryID'],
-                    // 'Image' => $this->image sẽ bổ sung sau.
-                    'description' => $row['description']
+                    'Description' => $row['Description']
+                ];
+                $books[] = $result;
+            }
+            return $books;
+        }
+
+        public function searchBookFromCategoriesID($categoriesID) {
+            $books = [];
+
+            $statement = $this->db->prepare('SELECT * FROM books WHERE CategoryID = :categoryID');
+        
+            $statement->execute(['categoryID' => $categoriesID]);
+
+
+            while($row = $statement->fetch()) {
+                $result = [
+                    'BookID' => $row['BookID'],
+                    'Title' => $row['Title'],
+                    'Author' => $row['Author'],
+                    'Publisher' => $row['Publisher'],
+                    'PublishDate' => $row['PublishDate'],
+                    'ISBN' => $row['ISBN'],
+                    'Quantity' => $row['Quantity'],
+                    'CategoryID' =>$row['CategoryID'],
+                    'Description' => $row['Description']
                 ];
                 $books[] = $result;
             }
@@ -123,8 +162,7 @@
                 'ISBN' => $row['ISBN'],
                 'Quantity' => $row['Quantity'],
                 'CategoryID' =>$row['CategoryID'],
-                'image' => $row['image'],
-                'description' => $row['description']
+                'Description' => $row['Description']
             ];
             return $result;
         }
@@ -157,6 +195,28 @@
             }
             return $books;
         }
+
+        public function getValidationErrors()
+	{
+		return $this->errors;
+	}
+
+	public function validate()
+	{
+		if (!$this->author) {
+			$this->errors['name'] = 'Invalid name.';
+		}
+
+		if (strlen($this->phone) < 10 || strlen($this->phone) > 11) {
+			$this->errors['phone'] = 'Invalid phone number.';
+		}
+
+		if (strlen($this->notes) > 255) {
+			$this->errors['notes'] = 'Notes must be at most 255 characters.';
+		}
+
+		return empty($this->errors);
+	}
         
     }
 

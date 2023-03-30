@@ -25,53 +25,58 @@ require_once __DIR__ . '/../components/header.php';
                 <br>
                 <div class="field-set ">
 
-                     <div class="border border-black rounded-2">
+                    <div class="border border-black rounded-2">
                         <!--   user name -->
-                     <span class="input-item">
-                        <i class="fa fa-user-circle"></i>
-                    </span>
-                    <!--   user name Input-->
-                    <input class="form-input" id="txt-input" type="text" placeholder="@UserName" name="username"
-                        required>
+                        <span class="input-item">
+                            <i class="fa fa-user-circle"></i>
+                        </span>
+                        <!--   user name Input-->
+                        <input class="form-input" id="txt-input" type="text" placeholder="@UserName" name="username"
+                            required>
 
-                     </div>
+                    </div>
                     <br>
 
                     <div class="border border-black rounded-2">
                         <!--   Password -->
 
-                    <span class="input-item">
-                        <i class="fa fa-key"></i>
-                    </span>
-                    <!--   Password Input-->
-                    <input class="form-input" type="password" placeholder="Password" id="pwd" name="password" required>
+                        <span class="input-item">
+                            <i class="fa fa-key"></i>
+                        </span>
+                        <!--   Password Input-->
+                        <input class="form-input" type="password" placeholder="Password" id="pwd" name="password"
+                            required>
 
-                    <!--      Show/hide password  -->
-                    <span>
-                        <i class="fa fa-eye" aria-hidden="true" type="button" id="eye"></i>
-                    </span>
+                        <!--      Show/hide password  -->
+                        <span>
+                            <i class="fa fa-eye" aria-hidden="true" type="button" id="eye"></i>
+                        </span>
                     </div>
                     <div class="captchacontainer">
                         <img src="<?=$builder->inline()?>" alt="Captcha" class="border border-black rounded-2">
                         <br>
-                        <input class="form-input border border-black rounded-2" type="text" name="captcha" placeholder="Captcha">
+                        <input class="form-input border border-black rounded-2" type="text" name="captcha"
+                            placeholder="Captcha">
                     </div>
 
                     <br>
                     <!--        buttons -->
                     <!--      button LogIn -->
-                    <button class="log-in border border-black rounded-2"> Đăng ký </button>
+                    <button class="btn log-in border border-black rounded-2 mb-2"> Đăng nhập </button>
                 </div>
 
                 <!--   other buttons -->
                 <div class="other">
                     <!--      Forgot Password button-->
-                    <button class="btn submits frgt-pass border border-black rounded-2">Quên mật khẩu</button>
+                    <button type="button" class="btn border border-black rounded-2" data-bs-toggle="tooltip"
+                        data-bs-placement="bottom" data-bs-title="Tính năng đang được cập nhật...">Quên mật
+                        khẩu</button>
                     <!--     Sign Up button -->
-                    <a href="/register" class="btn submits sign-up border border-black rounded-2">Đăng ký
+                    <button type="button" class="btn border border-black rounded-2">
+                        <a href="/register">Đăng ký <i class="fa fa-user-plus"></i></a>
                         <!--         Sign Up font icon -->
-                        <i class="fa fa-user-plus" aria-hidden="true"></i>
-                    </a>
+
+                    </button>
                     <!--      End Other the Division -->
                 </div>
 
@@ -82,6 +87,9 @@ require_once __DIR__ . '/../components/header.php';
         </form>
     </div>
     <script>
+    const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+    const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
     function show() {
         var p = document.getElementById('pwd');
         p.setAttribute('type', 'text');

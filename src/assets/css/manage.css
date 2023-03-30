@@ -2,102 +2,8 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    color: #000000;
     caret-color: transparent;
 }
-
-/* Slider */
-
-.carousel-caption {
-    position: absolute;
-    right: 10%!important;
-    left: 10%!important;
-}
-
-.slider-button {
-    width: 10px!important;
-    height: 10px!important;
-    border-top-left-radius:28px;
-    border-top-right-radius:28px;
-    border-bottom-left-radius:28px;
-    border-bottom-right-radius:28px;
-    background-color: #5D5D5D!important;
-    border-top: none!important;
-    border-bottom: none!important;
-  }
-  
-  .carousel-indicators .active {
-    opacity: 1;
-}
-
-.pre-title{
-    animation-delay: 200ms; 
-    opacity: 1;
-}
-
-.title{
-    font-size: 3.5rem;
-    font-weight: 500;
-    line-height: 1.2;
-    animation-delay: 300ms; 
-    opacity: 1; 
-}
-
-.background{
-    height: 630px;
-}
-
-.background-img{
-    width: 480px;
-}
-
-/* Categories */
-
-.bg-indigo{
-    background-color: #faf1ff!important;
-}
-.icon-indigo{
-    color: #a200fc;
-}
-
-.bg-tangerine {
-    background-color: #faf4eb!important;
-}
-.icon-tangerine{
-    color: #f79400;
-}
-
-.bg-chili {
-    background-color: #f4e6e5!important;
-}
-.icon-chili{
-    color: #f01000;
-}
-
-.bg-carolina {
-    background-color: #e6f2f4!important;
-}
-.icon-carolina{
-    color: #00cdef;
-}
-
-/* Newest-release */
-
-#New-release .link-hover:hover {
-    color: #ef7474!important;
-    text-decoration: none;
-}
-
-.crop-text{
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-}
-
-/* Result */
-
 
 /* Animation */
 
@@ -195,13 +101,4 @@
 .fadeInUp {
     -webkit-animation-name: fadeInUp;
     animation-name: fadeInUp
-}
-
-.category {
-    cursor: pointer;
-
-}
-
-.category:hover {
-    transform: scale(1.1);
 }

@@ -69,14 +69,13 @@ class PageController
 			) {
 
 				if ($user->checkUser(strtolower($_POST['username']), $_POST['password'])) {
-
 					if($user->checkAdmin(strtolower($_POST['username']), $_POST['password'])) {
+						echo 1;
 						$_SESSION['admin'] = true;
 					}
 
 					$_SESSION['user'] = strtolower($_POST['username']);
 					
-					$loggedin = true;
 					header('location: /');
         			exit();
 				} else {

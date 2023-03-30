@@ -63,8 +63,13 @@ require_once __DIR__ . '/../components/header.php';
                             <i class="fa fa-key"></i>
                         </span>
                         <!--   Re-Password Input-->
-                        <input class="form-input" type="password" placeholder="Re-Password" id="re-pwd" name="Re-password"
-                            required>
+                        <input class="form-input" type="password" placeholder="Re-Password" id="re-pwd"
+                            name="Re-password" required>
+
+
+                        <span>
+                            <i class="fa fa-eye" aria-hidden="true" type="button" id="eye"></i>
+                        </span>
                     </div>
 
                     <br>
@@ -75,8 +80,7 @@ require_once __DIR__ . '/../components/header.php';
                             <i class="fa-solid fa-at"></i>
                         </span>
                         <!--   Email Input-->
-                        <input class="form-input" id="txt-input" type="email" placeholder="Email" name="email"
-                            required>
+                        <input class="form-input" id="txt-input" type="email" placeholder="Email" name="email" required>
 
                     </div>
 
@@ -85,11 +89,10 @@ require_once __DIR__ . '/../components/header.php';
                     <div class="border border-black rounded-2">
                         <!--   Phone -->
                         <span class="input-item">
-                        <i class="fa-solid fa-mobile"></i>
+                            <i class="fa-solid fa-mobile"></i>
                         </span>
                         <!--   Phone Input-->
-                        <input class="form-input" id="txt-input" type="phone" placeholder="phone" name="phone"
-                            required>
+                        <input class="form-input" id="txt-input" type="phone" placeholder="Phone" name="phone" required>
 
                     </div>
 
@@ -105,18 +108,21 @@ require_once __DIR__ . '/../components/header.php';
                     <!--        buttons -->
                     <!--      button LogIn -->
                     <div id="result"></div>
-                    <button class="log-in border border-black rounded-2"> Đăng ký </button>
+                    <button class="btn log-in border border-black rounded-2 mb-2"> Đăng ký </button>
                 </div>
 
                 <!--   other buttons -->
                 <div class="other">
                     <!--      Forgot Password button-->
-                    <button class="btn submits frgt-pass border border-black rounded-2">Quên mật khẩu</button>
+                    <button type="button" class="btn border border-black rounded-2" data-bs-toggle="tooltip"
+                        data-bs-placement="bottom" data-bs-title="Tính năng đang được cập nhật...">Quên mật
+                        khẩu</button>
                     <!--     Sign Up button -->
-                    <a href="/login" class="btn submits sign-up border border-black rounded-2">Đăng nhập
+                    <button type="button" class="btn border border-black rounded-2">
+                        <a href="/login">Đăng nhập <i class="fa fa-user"></i></a>
                         <!--         Sign Up font icon -->
-                        <i class="fa fa-user" aria-hidden="true"></i>
-                    </a>
+
+                    </button>
                     <!--      End Other the Division -->
                 </div>
 
@@ -126,47 +132,48 @@ require_once __DIR__ . '/../components/header.php';
             <!-- End Form -->
         </form>
 
-        
+
 
     </div>
     <script>
+    $(document).ready(function() {
+        const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+        const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(
+            tooltipTriggerEl))
 
+        $('form').submit(function(event) {
+            event.preventDefault();
 
+            // Lấy dữ liệu từ form
+            var formData = {
+                username: $('input[name="username"]').val(),
+                password: $('input[name="password"]').val(),
+                email: $('input[name="email"]').val(),
+                phone: $('input[name="phone"]').val(),
+                captcha: $('input[name="captcha"]').val()
+            };
 
-$(document).ready(function() {
-    $('form').submit(function(event) {
-        event.preventDefault();
+            // Gửi request post đến API
+            $.ajax({
+                url: '/register',
+                type: 'POST',
+                data: formData,
+                success: function(data) {
 
-        // Lấy dữ liệu từ form
-        var formData = {
-            username: $('input[name="username"]').val(),
-            password: $('input[name="password"]').val(),
-            email: $('input[name="email"]').val(),
-            phone: $('input[name="phone"]').val(),
-            captcha: $('input[name="captcha"]').val()
-        };
+                    var res = `<h6 class="text-info">${data}</h6>`
 
-        // Gửi request post đến API
-        $.ajax({
-            url: '/register',
-            type: 'POST',
-            data: formData,
-            success: function(data) {
+                    $('#result').html(res);
+                },
+                error: function(error) {
 
-                var res = `<h6 class="text-info">${data}</h6>`
+                    var res = `<h6 class="text-danger">Có lỗi xảy ra</h6>`
 
-                $('#result').html(res);
-            },
-            error: function(error) {
-
-                var res = `<h6 class="text-danger">Có lỗi xảy ra</h6>`
-
-                $('#result').html();
-                console.log(error);
-            }
+                    $('#result').html();
+                    console.log(error);
+                }
+            });
         });
     });
-});
 
 
 
