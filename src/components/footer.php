@@ -18,8 +18,8 @@
                             </span>
                         </address>
                         <div class="mb-3">
-                            <a href="mailto:ticket@borrowbookcompany.com" class="widgets-hover transition-3d-hover fs-6 d-block text-dark mb-1">sale@bookworm.com</a>
-                            <a href="tel:+1246-345-0695" class="widgets-hover transition-3d-hover fs-6 d-block text-dark">+84 999 999 999</a>
+                            <a href="" class="widgets-hover transition-3d-hover fs-6 d-block text-dark mb-1">Book@ctu.com</a>
+                            <a href="" class="widgets-hover transition-3d-hover fs-6 d-block text-dark">+84 999 999 999</a>
                         </div>
                         <ul class="list-unstyled mb-0 d-flex">
                             <li class="btn ps-0">
@@ -55,16 +55,16 @@
                     <h4 class="fs-5 fw-medium mb-2 text-center mt-5">About Us</h4>
                     <ul class="list-unstyled text-center mt-5">
                         <li class="pb-2">
-                            <a class="widgets-hover transition-3d-hover fs-6 text-dark" href="#">MSSV 1</a>
+                            <a class="widgets-hover transition-3d-hover fs-6 text-dark" href="#">B2014685</a>
                         </li>
                         <li class="py-2">
-                            <a class="widgets-hover transition-3d-hover fs-6 text-dark" href="#">NAME 1</a>
+                            <a class="widgets-hover transition-3d-hover fs-6 text-dark" href="#">Lê Đặng Uy Phong</a>
                         </li>
                         <li class="py-2">
-                            <a class="widgets-hover transition-3d-hover fs-6 text-dark" href="#">MSSV 2</a>
+                            <a class="widgets-hover transition-3d-hover fs-6 text-dark" href="#">B2014682</a>
                         </li>
                         <li class="pt-2">
-                            <a class="widgets-hover transition-3d-hover fs-6 text-dark" href="#">NAME 2</a>
+                            <a class="widgets-hover transition-3d-hover fs-6 text-dark" href="#">Nguyễn Thanh Nhường</a>
                         </li>
                         </ul>
                     </div>

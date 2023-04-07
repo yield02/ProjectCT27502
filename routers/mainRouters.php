@@ -3,11 +3,17 @@
  
 $router->get('/','App\PageController@index');
 
+$router->get('/add','App\PageController@addPage');
 
-$router->get('/manage', function() {
-    require __DIR__.'/../src/page/manage.php';
-   
-});
+$router->get('/manage', 'App\PageController@manage');
+
+$router->get('/editBook/{id}', 'App\PageController@editBook');
+
+$router->get('/editCategory/{id}', 'App\PageController@editCategory');
+
+
+
+
 
 $router->get('/assets/{type}/{file}', function ($type, $file) {
     $path = __DIR__ . '/../src/assets/'. $type .'/' . $file;
@@ -34,14 +40,3 @@ $router->get('/assets/{type}/{file}', function ($type, $file) {
 });
 
 
-$router->get('/assets/img/{id}', function ($filename) {
-    $path = __DIR__ . '/img/' . $id;
-    if (file_exists($path)) {
-        $type = mime_content_type($path);
-        header('Content-Type: ' . $type);
-        readfile($path);
-    } else {
-        header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found');
-        echo 'File not found.';
-    }
-});

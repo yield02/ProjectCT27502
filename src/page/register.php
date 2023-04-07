@@ -207,3 +207,24 @@ require_once __DIR__ . '/../components/addCss.php';
 require_once __DIR__ . '/../components/footer.php';
 
 ?>
+
+
+
+<div>
+    <p>
+        <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseChangePassword" role="button"
+            aria-expanded="false" aria-controls="collapseChangePassword">
+            Đổi mật khẩu
+        </a>
+    </p>
+    <div class="collapse" id="collapseChangePassword">
+        <div class="card card-body">
+            <form class="d-flex flex-column changePassword">
+                <lable>Mật khẩu cũ:</lable> <input name="old-Password" ></input>
+                <lable>Mật khẩu mới:</lable> <input name="new-Password"></input>
+                <lable>Nhập lại mật khẩu: </lable> <input name="re-new-Password" /> </input>
+                <button class="">Đồng ý</button>
+            </form>
+        </div>
+    </div>
+</div>

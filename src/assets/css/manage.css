@@ -5,6 +5,28 @@
     caret-color: transparent;
 }
 
+input{
+    caret-color: black;
+}
+
+/* category */
+
+.bg-indigo{
+    background-color: #faf1ff!important;
+}
+
+.bg-tangerine {
+    background-color: #faf4eb!important;
+}
+
+.bg-chili {
+    background-color: #f4e6e5!important;
+}
+
+.bg-carolina {
+    background-color: #e6f2f4!important;
+}
+
 /* Animation */
 
 .animated {

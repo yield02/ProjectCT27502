@@ -8,7 +8,7 @@ Học kỳ 2, Năm học 2022-2023
 
 **MSSV 2**: Lê Đặng Uy Phong
 
-**Họ tên SV 2**:
+**Họ tên SV 2**B2014685:
 
 **Lớp học phần**:
 

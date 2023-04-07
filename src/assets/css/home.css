@@ -81,6 +81,19 @@
     color: #00cdef;
 }
 
+#search-btn {
+    cursor: pointer;
+}
+
+.category__inner{
+    cursor: pointer;
+}
+
+.category__inner:hover {
+    transform: scale(1.1);
+    transition: all .3s ease-in-out;
+}
+
 /* Newest-release */
 
 #New-release .link-hover:hover {
@@ -97,7 +110,10 @@
 }
 
 /* Result */
-
+#category-result a:hover {
+    color: #f30b0b!important;
+    background-color: transparent;
+}
 
 /* Animation */
 
@@ -197,11 +213,3 @@
     animation-name: fadeInUp
 }
 
-.category {
-    cursor: pointer;
-
-}
-
-.category:hover {
-    transform: scale(1.1);
-}

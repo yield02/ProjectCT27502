@@ -62,3 +62,72 @@ li{
 .widgets-hover:hover {
     padding-left: 12px;
 }
+
+#nav-manager .dropdown-menu.show {
+    animation: slideInUp1 0.2s forwards;
+  }
+
+ #nav .dropdown-menu.show {
+    animation: slideInUp2 0.2s forwards;
+  }
+
+.dropdown-item {
+    transition: all .3s ease-in-out;
+}
+
+.dropdown-item {
+    display: block;
+    width: 100%;
+    padding: .375rem 1.875rem;
+    clear: both;
+    font-weight: 400;
+    color: #161619;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+}
+
+.dropdown-menu li:hover{
+    background-color: var(--bs-tertiary-bg);;
+}
+.dropdown-item:hover {
+    transform: translateX(0.75rem);
+    background-color: transparent!important;
+}
+
+/* Animation */
+
+@keyframes slideInUp1 {
+    from {
+        transform: translate3d(12px, 60px, 0px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translate3d(12px, 40px, 0px);
+      opacity: 1;
+    }
+}
+
+.slideInUp1 {
+    animation-name: slideInUp1
+}
+
+
+@keyframes slideInUp2 {
+    from {
+        transform: translate3d(24px, 120px, 0px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translate3d(24px, 107.2px, 0px);
+        opacity: 1;
+
+    }
+}
+
+.slideInUp2 {
+    animation-name: slideInUp2
+}

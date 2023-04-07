@@ -1,5 +1,6 @@
 <?php 
     namespace App\Models;
+    
 
     class Book {
         private $db;
@@ -99,6 +100,8 @@
             $queryTitle = '%' . $title . '%';
             
             $statement->execute(['Title' => $queryTitle]);
+             
+            $category = new Category($this->db);
 
             while($row = $statement->fetch()) {
                 $result = [
@@ -110,12 +113,16 @@
                     'ISBN' => $row['ISBN'],
                     'Quantity' => $row['Quantity'],
                     'CategoryID' =>$row['CategoryID'],
+                    'CategoryName' => $category->getCategoryNameFromID($row['CategoryID']),
                     'Description' => $row['Description']
                 ];
                 $books[] = $result;
             }
             return $books;
         }
+
+
+            
 
         public function searchBookFromCategoriesID($categoriesID) {
             $books = [];
@@ -143,6 +150,19 @@
         }
   
 
+        public function delete($BookID) {
+            $statement = $this->db->prepare('DELETE FROM books WHERE BookID = :BookID');
+
+            $statement->execute(['BookID' => $BookID]);
+
+            if($statement) {
+                echo "Xóa thành công";
+            }
+            else {
+                echo "Xóa thất bại";
+            }
+        }
+
 
         public function findBook($BookID) {
             $books = [];
@@ -153,18 +173,8 @@
 
             $row = $statement->fetch();
 
-            $result = [
-                'BookID' => $row['BookID'],
-                'Title' => $row['Title'],
-                'Author' => $row['Author'],
-                'Publisher' => $row['Publisher'],
-                'PublishDate' => $row['PublishDate'],
-                'ISBN' => $row['ISBN'],
-                'Quantity' => $row['Quantity'],
-                'CategoryID' =>$row['CategoryID'],
-                'Description' => $row['Description']
-            ];
-            return $result;
+            $this->fillData($row);
+            return $this;
         }
 
 
@@ -196,29 +206,53 @@
             return $books;
         }
 
-        public function getValidationErrors()
-	{
-		return $this->errors;
-	}
+        public function getRandomBooks() {
+            $books = [];
+            
+            $statement = $this->db->prepare('SELECT * FROM books ORDER BY RAND() LIMIT 5;');
+            
+            $statement->execute();
+            while ($row = $statement->fetch()) {
+                $book = new Book('');
+                $book->fillData($row);
+                $books[] = $book;
+            }
+            return $books;
+        }
 
-	public function validate()
-	{
-		if (!$this->author) {
-			$this->errors['name'] = 'Invalid name.';
-		}
-
-		if (strlen($this->phone) < 10 || strlen($this->phone) > 11) {
-			$this->errors['phone'] = 'Invalid phone number.';
-		}
-
-		if (strlen($this->notes) > 255) {
-			$this->errors['notes'] = 'Notes must be at most 255 characters.';
-		}
-
-		return empty($this->errors);
-	}
+        public function add($Title, $Author, $Publisher, $PublishDate, $ISBN, $Quantity, $CategoryID, $Description) {
+            $statement = $this->db->prepare("INSERT INTO books (Title, Author, Publisher, PublishDate, ISBN, Quantity, CategoryID, Description) VALUES (:Title, :Author, :Publisher, :PublishDate, :ISBN, :Quantity, :CategoryID, :Description);");
+            $result = $statement->execute(["Title"=> $Title, "Author"=> $Author, "Publisher"=> $Publisher, "PublishDate"=> $PublishDate, "ISBN"=> $ISBN, "Quantity"=> $Quantity, "CategoryID"=> $CategoryID, "Description" => $Description]);
         
+            if ($result) {
+                return $this->db->lastInsertId();
+            } else {
+                return 0;
+            }
+        }
+
+        public function edit($Title, $Author, $Publisher, $PublishDate, $ISBN, $Quantity, $CategoryID, $Description, $BookID) {
+            $statement = $this->db->prepare("UPDATE books SET Title=:Title, Author=:Author, Publisher=:Publisher, PublishDate=:PublishDate, ISBN=:ISBN, Quantity=:Quantity, CategoryID=:CategoryID, Description=:Description WHERE BookID=:id");
+            $result = $statement->execute(["Title"=> $Title, "Author"=> $Author, "Publisher"=> $Publisher, "PublishDate"=> $PublishDate, "ISBN"=> $ISBN, "Quantity"=> $Quantity, "CategoryID"=> $CategoryID, "Description" => $Description, 'id' => $BookID]);
+        
+            if ($result) {
+                return $this->db->lastInsertId();
+            } else {
+                return 0;
+            }
+        }
+
+
+
+
+
+
+
+
     }
+
+
+        
 
         
 ?>

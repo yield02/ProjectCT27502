@@ -12,7 +12,7 @@ require_once __DIR__ . '/../components/header.php';
 
     <div class="overlay">
         <!-- LOGN IN FORM by Omar Dsoky -->
-        <form method="post" action="/login" class="form border border-dark">
+        <form method="post" action="<?php echo htmlspecialchars("/login");?>" class="form border border-dark">
             <!--   con = Container  for items in the form-->
             <div class="con">
                 <!--     Start  header Content  -->

@@ -13,7 +13,7 @@ include __DIR__ . '/../../bootstrap.php';
 	if (defined('TITLE')) {
 		echo TITLE;
 	} else {
-		echo 'Trang các Trích dẫn';
+		echo 'Trang chủ';
 	}
 	?>
     </title>
@@ -22,15 +22,17 @@ include __DIR__ . '/../../bootstrap.php';
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
     </script>
-    <link rel="stylesheet" href="./assets/css/main.css">
-    <script src="./assets/js/jquery-3.6.3.min.js"></script>
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <script src="/assets/js/jquery-3.6.3.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
         integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="/assets/js/main.js"></script>
+
 </head>
 
 <body>
-    <header>
+    <header id="nav">
         <div class="border-bottom position-relative" style="margin-bottom: -1px;">
             <div class="container-fluid px-5 ">
                 <div class="d-flex align-items-center position-relative flex-wrap">
@@ -58,37 +60,71 @@ include __DIR__ . '/../../bootstrap.php';
                             </svg>
                         </a>
                     </div>
-                    <div class="nav-navigator me-auto">
+                    <div class="nav-navigator flex-grow-1 d-flex justify-content-between">
                         <ul class="nav">
-                            <li class="nav-item text-center" style="width: 130px;">
+                            <li class="nav-item text-center" style="width: 10rem;">
                                 <a class="nav-link text-dark mx-4 px-0 py-5 fw-medium border-bottom border-danger border-2"
                                     aria-current="page" href="/">Trang chủ</a>
                             </li>
-                            <?php 
-                                if(isset($_SESSION['user'])) 
-                                    echo    '<li class="nav-item text-center" style="width: 130px;">
-                                                <a class="nav-link text-dark mx-4 px-0 py-5 fw-medium border-bottom border-danger border-2" aria-current="page" href="/logout">Đăng Xuất</a>
-                                            </li>'; 
-                                else 
-                                echo    '<li class="nav-item text-center" style="width: 130px;">
-                                            <a class="nav-link text-dark mx-4 px-0 py-5 fw-medium border-bottom border-danger border-2" aria-current="page" href="login">Đăng nhập</a>
-                                        </li>'?>
 
                             <?php 
 
                                 if(isset($_SESSION['user']) && isset($_SESSION['admin']))
-                                    echo '<li class="nav-item text-center" style="width: 130px;">
+                                    echo '     
+                                <li class="nav-item text-center" style="width: 10rem;">
                                     <a class="nav-link text-dark mx-4 px-0 py-5 fw-medium border-bottom border-danger border-2"
-                                        aria-current="page" href="manage">Quản lí</a>
+                                        aria-current="page" href="/manage">Quản lí</a>
                                 </li>';
                             ?>
 
                         </ul>
+
+                        <?php 
+                                if(!isset($_SESSION['user'])) 
+                                echo    '<ul class="nav">
+                                <li class="nav-item text-center" style="width: 10rem;">
+                                    <a class="nav-link text-dark mx-4 px-0 py-5 fw-medium border-bottom border-danger border-2"
+                                        aria-current="page" href="login"><i class="fa-solid fa-cart-shopping"></i></a>
+                                </li>
+
+                                <li class="nav-item text-center" style="width: 10rem;">
+                                    <a class="nav-link text-dark mx-4 px-0 py-5 fw-medium border-bottom border-danger border-2"
+                                        aria-current="page" href="login"><i class="fa-solid fa-user"></i></a>
+                                </li>
+                            </ul>';
+                                ?>
+
+                        <?php
+                            if(isset($_SESSION['user'])) {
+                                $username = $_SESSION['user'];
+                                echo '<ul class="nav">
+                                <li class="nav-item text-center" style="width: 10rem;">
+                                    <a class="nav-link text-dark mx-4 px-0 py-5 fw-medium border-bottom border-danger border-2"
+                                        aria-current="page" href="/cart/'. $_SESSION['user'] . '"><i class="fa-solid fa-cart-shopping"></i></a>
+                                </li>
+
+                                <li class="dropdown nav-item text-center" style="width: 10rem;">
+                                        <a role="button" 
+                                        class="dropdown-toggle nav-link text-dark mx-4 px-0 py-5 fw-medium border-bottom border-danger border-2" aria-label="Toggle Dropdown"
+                                        data-bs-toggle="dropdown">
+                                        <i class="fa-solid fa-user"></i>
+                                        </a>
+                                        <ul class="dropdown-menu fs-6 rounded-0 border-dark">
+                                            <li><a class="dropdown-item pe-5" href="/user/'. $username .'">Thông tin cá nhân</a></li>
+                                            <li><a class="dropdown-item pe-5" href="#">Lịch sử mượn sách</a></li>
+                                            <li><a class="dropdown-item pe-5" href="/logout">Đăng xuất</a></li>
+                                        </ul>
+                                </li>
+                            </ul>';
+                            }
+                               
+                        ?>
+
                     </div>
                     <div class="nav-search">
                         <form class="form-inline" role="search" method="get" id="search-form">
                             <div class="input-group">
-                                <div class="d-flex" style="margin-right: -1px;">
+                                <div id="search-btn" class="d-flex" style="margin-right: -1px;">
                                     <i
                                         class="fa-solid fa-magnifying-glass input-group-text pb-2d75 bg-light border-light pt-3"></i>
                                 </div>
@@ -147,7 +183,7 @@ include __DIR__ . '/../../bootstrap.php';
         $_SESSION['toastShown'] = false;
     }
     
-?>
+    ?>
         <script>
         const toastLiveExample = document.getElementById('liveToast')
 
@@ -158,6 +194,6 @@ include __DIR__ . '/../../bootstrap.php';
             }
         }
         </script>
-    </header>
+ </header>
 
     <!-- BEGIN CHANGEABLE CONTENT. -->

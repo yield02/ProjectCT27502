@@ -33,9 +33,10 @@ CREATE TABLE IF NOT EXISTS `books` (
   PRIMARY KEY (`BookID`),
   KEY `CategoryID` (`CategoryID`),
   CONSTRAINT `books_ibfk_1` FOREIGN KEY (`CategoryID`) REFERENCES `categories` (`CategoryID`)
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table libraryproject.books: ~50 rows (approximately)
+DELETE FROM `books`;
 INSERT INTO `books` (`BookID`, `Title`, `Author`, `Publisher`, `PublishDate`, `ISBN`, `Quantity`, `CategoryID`, `Description`) VALUES
 	(1, 'Đường xưa mây trắng', 'Thích Nhất Hạnh', 'Nhà xuất bản Văn hóa Thông tin', '2014-01-01', '978-604-59-1627-9', 10, 1, 'Tập sách gồm các bài giảng về phật pháp và đạo đức của Thiền sư Thích Nhất Hạnh'),
 	(2, 'Phật giáo cổ truyền Việt Nam', 'Trần Ngọc Thêm', 'Nhà xuất bản Văn hóa Thông tin', '2003-01-01', '893-7111-077-6', 5, 2, 'Tài liệu về lịch sử, triết học và tín ngưỡng của Phật giáo cổ truyền Việt Nam'),
@@ -91,9 +92,9 @@ INSERT INTO `books` (`BookID`, `Title`, `Author`, `Publisher`, `PublishDate`, `I
 -- Dumping structure for table libraryproject.borrowingdetails
 CREATE TABLE IF NOT EXISTS `borrowingdetails` (
   `BorrowDetailID` int(11) NOT NULL,
-  `BorrowID` int(11) DEFAULT NULL,
-  `BookID` int(11) DEFAULT NULL,
-  `quantity` int(11) DEFAULT NULL,
+  `BorrowID` int(11) NOT NULL,
+  `BookID` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
   PRIMARY KEY (`BorrowDetailID`),
   KEY `BorrowID` (`BorrowID`),
   KEY `BookID` (`BookID`),
@@ -102,14 +103,14 @@ CREATE TABLE IF NOT EXISTS `borrowingdetails` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table libraryproject.borrowingdetails: ~0 rows (approximately)
+DELETE FROM `borrowingdetails`;
 
 -- Dumping structure for table libraryproject.borrowings
 CREATE TABLE IF NOT EXISTS `borrowings` (
   `BorrowID` int(11) NOT NULL AUTO_INCREMENT,
   `UserID` int(11) NOT NULL,
-  `BookID` int(11) NOT NULL,
-  `BorrowDate` date NOT NULL,
-  `DueDate` date NOT NULL,
+  `BorrowDate` date DEFAULT NULL,
+  `DueDate` date DEFAULT NULL,
   `ReturnDate` date DEFAULT NULL,
   `Status` varchar(10) NOT NULL,
   `LateFee` decimal(10,2) DEFAULT NULL,
@@ -119,6 +120,7 @@ CREATE TABLE IF NOT EXISTS `borrowings` (
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table libraryproject.borrowings: ~0 rows (approximately)
+DELETE FROM `borrowings`;
 
 -- Dumping structure for table libraryproject.categories
 CREATE TABLE IF NOT EXISTS `categories` (
@@ -128,9 +130,10 @@ CREATE TABLE IF NOT EXISTS `categories` (
   `Img` varchar(255) DEFAULT NULL,
   `Color__img` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`CategoryID`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table libraryproject.categories: ~10 rows (approximately)
+DELETE FROM `categories`;
 INSERT INTO `categories` (`CategoryID`, `CategoryName`, `Description`, `Img`, `Color__img`) VALUES
 	(1, 'Văn học', 'Sách Văn học là các tác phẩm văn chương, thơ ca, tiểu thuyết, truyện ngắn và các loại văn xuôi khác.', 'fa-solid fa-book-open', 'tangerine'),
 	(2, 'Tôn giáo', 'Sách tôn giáo là các tài liệu về đạo lí và triết lý của những tôn giáo khác nhau, phổ biến nhất là sách thánh của các tôn giáo lớn.', 'fa-solid fa-church', 'carolina'),
@@ -153,21 +156,20 @@ CREATE TABLE IF NOT EXISTS `users` (
   `Address` varchar(255) DEFAULT NULL,
   `Phone` varchar(20) DEFAULT NULL,
   `isAdmin` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`UserID`)
+  PRIMARY KEY (`UserID`),
+  UNIQUE KEY `Username` (`Username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table libraryproject.users: ~7 rows (approximately)
+-- Dumping data for table libraryproject.users: ~6 rows (approximately)
+DELETE FROM `users`;
 INSERT INTO `users` (`UserID`, `Username`, `Password`, `Email`, `Fullname`, `Address`, `Phone`, `isAdmin`) VALUES
-	(1, 'user1', 'password1', 'user1@example.com', 'Nguyen Van A', 'Hanoi, Vietnam', '0987654321', 1),
+	(1, 'user1', 'password1', 'user1@example.com', 'Nguyen Van A', 'Hanoi, Vietnam', '0987654321', 0),
 	(2, 'user2', 'password2', 'user2@example.com', 'Tran Thi B', 'Ho Chi Minh, Vietnam', '0123456789', 0),
 	(3, 'user3', 'password3', 'user3@example.com', 'Pham Van C', 'Da Nang, Vietnam', '0912345678', 0),
 	(4, 'nguyenvana', 'pass123', 'nguyenvana@gmail.com', 'Nguyễn Văn A', 'Hà Nội, Việt Nam', '0912345678', 0),
-	(5, 'tranthib', 'password', 'tranthib@yahoo.com.vn', 'Trần Thị B', 'Hồ Chí Minh, Việt Nam', '0987654321', 0),
 	(6, 'yield', '2002', 'b2014682@gmail.com', 'Nguyễn Thanh Nhường', 'Việt Nam', '0832329981', 1),
-	(8, 'nhuong', '123123', 'thanhnhuong2002@gmail.com', NULL, NULL, '0832329988', NULL);
+	(8, 'nhuong', '123123', 'thanhnhuong2002@gmail.com', NULL, NULL, '0832329988', 0);
 
-
-SELECT CategoryName FROM categories WHERE CategoryID = 1;
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;

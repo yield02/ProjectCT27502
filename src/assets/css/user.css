@@ -8,3 +8,7 @@
 input{
     caret-color: black;
 }
+
+.changeForm {
+    max-width: 500px;
+}
